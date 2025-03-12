@@ -17,13 +17,17 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       lspconfig.lua_ls.setup { capabilites = capabilities }
-      lspconfig.rust_analyzer.setup { capabilites = capabilities }
-      lspconfig.apex_ls.setup {
-        apex_jar_path = "/home/aydin/LSPs/apex-jorje-lsp.jar",
-        apex_enable_semantic_errors = true,
-        apex_enable_completion_statistics = true,
+      lspconfig.quick_lint_js.setup { capabilites = capabilities }
+      lspconfig.rust_analyzer.setup {
         capabilites = capabilities,
-        filetypes = { "apex" },
+        cmd = { "/home/aydin/.local/bin/rust-analyzer" },
+      }
+      lspconfig.apex_ls.setup {
+        apex_jar_path = "/home/aydin/.local/bin/apex-jorje-lsp.jar",
+        apex_enable_semantic_errors = false,
+        apex_enable_completion_statistics = false,
+        capabilites = capabilities,
+        filetypes = { "apex", "soql", "sosl" },
       }
 
       vim.api.nvim_create_autocmd("LspAttach", {
