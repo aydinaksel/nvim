@@ -5,11 +5,16 @@ return {
     config = function()
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-        ensure_installed = { "lua", "rust", "apex", "html", "css", "python", "javascript", },
+        ensure_installed = {
+          "soql", "sosl", "sql", "lua", "rust", "apex", "html", "css",
+          "python", "javascript",
+        },
+        modules = {},
+        ignore_install = {},
+        indent = { enable = false },
         sync_install = false,
         auto_install = false,
         highlight = { enable = true },
-        indent = { enable = true },
       })
     end
   }
