@@ -5,5 +5,7 @@ vim.filetype.add({
     trigger = "apex",
     soql = "soql",
     sosl = "sosl",
+    tf = "terraform",
+    tpl = "bash",
   }
 })

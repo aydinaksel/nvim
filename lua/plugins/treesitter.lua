@@ -5,7 +5,7 @@ return {
     config = function()
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-        ensure_installed = { "lua", "rust", "apex", "html", "css", "python", "javascript", },
+        ensure_installed = { "terraform", "lua", "rust", "apex", "html", "css", "python", "javascript", },
         sync_install = false,
         auto_install = false,
         highlight = { enable = true },

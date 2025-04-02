@@ -16,6 +16,7 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+      lspconfig.ruff.setup { capabilities = capabilities }
       lspconfig.lua_ls.setup { capabilites = capabilities }
       lspconfig.quick_lint_js.setup { capabilites = capabilities }
       lspconfig.rust_analyzer.setup {
@@ -27,7 +28,7 @@ return {
         apex_enable_semantic_errors = false,
         apex_enable_completion_statistics = false,
         capabilites = capabilities,
-        filetypes = { "apex", "soql", "sosl" },
+        filetypes = { "apex" },
       }
 
       vim.api.nvim_create_autocmd("LspAttach", {
