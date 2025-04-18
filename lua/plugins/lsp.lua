@@ -16,6 +16,7 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+      lspconfig.gopls.setup { capabilities = capabilities }
       lspconfig.ruff.setup { capabilities = capabilities }
       lspconfig.lua_ls.setup { capabilites = capabilities }
       lspconfig.quick_lint_js.setup { capabilites = capabilities }
