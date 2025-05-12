@@ -18,6 +18,7 @@ return {
 
       lspconfig.gopls.setup { capabilities = capabilities }
       lspconfig.html.setup { capabilities = capabilities }
+      lspconfig.cssls.setup { capabilities = capabilities }
       lspconfig.ruff.setup { capabilities = capabilities }
       lspconfig.lua_ls.setup { capabilites = capabilities }
       lspconfig.quick_lint_js.setup { capabilites = capabilities }
@@ -44,6 +45,13 @@ return {
               vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
             end,
           })
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.json",
+        callback = function()
+          vim.cmd([[%!jq '.' ]])
         end,
       })
     end,
