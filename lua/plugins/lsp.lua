@@ -22,12 +22,9 @@ return {
       lspconfig.ruff.setup { capabilities = capabilities }
       lspconfig.lua_ls.setup { capabilites = capabilities }
       lspconfig.quick_lint_js.setup { capabilites = capabilities }
-      lspconfig.rust_analyzer.setup {
-        capabilites = capabilities,
-        cmd = { "/home/aydin/.local/bin/rust-analyzer" },
-      }
+      lspconfig.rust_analyzer.setup { capabilites = capabilities }
       lspconfig.apex_ls.setup {
-        apex_jar_path = "/home/aydin/.local/bin/apex-jorje-lsp.jar",
+        apex_jar_path = vim.fn.expand("~/.local/bin/apex-jorje-lsp.jar"),
         apex_enable_semantic_errors = false,
         apex_enable_completion_statistics = false,
         capabilites = capabilities,
