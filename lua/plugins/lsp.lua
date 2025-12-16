@@ -13,23 +13,32 @@ return {
       },
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      lspconfig.gopls.setup { capabilities = capabilities }
-      lspconfig.html.setup { capabilities = capabilities }
-      lspconfig.cssls.setup { capabilities = capabilities }
-      lspconfig.ruff.setup { capabilities = capabilities }
-      lspconfig.lua_ls.setup { capabilites = capabilities }
-      lspconfig.quick_lint_js.setup { capabilites = capabilities }
-      lspconfig.rust_analyzer.setup { capabilites = capabilities }
-      lspconfig.apex_ls.setup {
-        apex_jar_path = vim.fn.expand("~/.local/bin/apex-jorje-lsp.jar"),
-        apex_enable_semantic_errors = false,
-        apex_enable_completion_statistics = false,
-        capabilites = capabilities,
-        filetypes = { "apex" },
+      local servers = {
+        gopls = {},
+        html = {},
+        cssls = {},
+        ruff = {},
+        lua_ls = {},
+        quick_lint_js = {},
+        rust_analyzer = {},
+        apex_ls = {
+          cmd = {
+            "java",
+            "-jar",
+            vim.fn.expand("~/.local/bin/apex-jorje-lsp.jar"),
+          },
+          filetypes = { "apex" },
+        },
       }
+
+      for server, config in pairs(servers) do
+        config.capabilities = capabilities
+        vim.lsp.config[server] = config
+      end
+
+      vim.lsp.enable(vim.tbl_keys(servers))
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
