@@ -23,6 +23,7 @@ return {
         lua_ls = {},
         quick_lint_js = {},
         rust_analyzer = {},
+        sqlls = {},
         apex_ls = {
           cmd = {
             "java",
