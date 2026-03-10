@@ -38,3 +38,7 @@ end)
 vim.keymap.set("n", "<space><space>build", function()
   vim.fn.chansend(job_id, { "cargo build\r\n" })
 end)
+
+vim.keymap.set("n", "<space><space>claude", function()
+  vim.fn.chansend(job_id, { "claude\r\n" })
+end)
