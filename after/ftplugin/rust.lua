@@ -5,6 +5,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     local filepath = vim.api.nvim_buf_get_name(0)
     vim.fn.system({ "leptosfmt", "--quiet", filepath })
-    vim.cmd("edit")
+    vim.cmd("edit!")
   end,
 })
