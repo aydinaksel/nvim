@@ -40,5 +40,11 @@ vim.keymap.set("n", "<space><space>build", function()
 end)
 
 vim.keymap.set("n", "<space><space>claude", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 10)
+
+  job_id = vim.bo.channel
   vim.fn.chansend(job_id, { "claude\r\n" })
 end)
