@@ -56,8 +56,17 @@ return {
       })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "acl-policy.json",
+        callback = function()
+          vim.cmd([[%!hujsonfmt]])
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.json",
         callback = function()
+          local filename = vim.fn.expand("%:t")
+          if filename == "acl-policy.json" then return end
           vim.cmd([[%!jq '.' ]])
         end,
       })
