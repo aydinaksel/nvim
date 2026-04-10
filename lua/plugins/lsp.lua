@@ -23,7 +23,15 @@ return {
         lua_ls = {},
         quick_lint_js = {},
         rust_analyzer = {},
-        sqlls = {},
+        nil_ls = {
+          settings = {
+            ["nil"] = {
+              formatting = {
+                command = { "nixfmt" },
+              },
+            },
+          },
+        },
         apex_ls = {
           cmd = {
             "java",
@@ -40,6 +48,13 @@ return {
       end
 
       vim.lsp.enable(vim.tbl_keys(servers))
+
+      vim.lsp.config('syntaqlite', {
+        cmd = { 'syntaqlite', 'lsp' },
+        filetypes = { 'sql' },
+        root_markers = { 'syntaqlite.toml', '.git' },
+      })
+      vim.lsp.enable('syntaqlite')
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
@@ -59,6 +74,13 @@ return {
         pattern = "acl-policy.json",
         callback = function()
           vim.cmd([[%!hujsonfmt]])
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.sql",
+        callback = function()
+          vim.cmd([[%!syntaqlite fmt]])
         end,
       })
 
