@@ -77,12 +77,12 @@ return {
         end,
       })
 
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*.sql",
-        callback = function()
-          vim.cmd([[%!syntaqlite fmt]])
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   pattern = "*.sql",
+      --   callback = function()
+      --     vim.cmd([[%!syntaqlite fmt]])
+      --   end,
+      -- })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.json",
