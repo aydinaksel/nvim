@@ -1,6 +1,6 @@
 vim.opt.shiftwidth = 4
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePost", {
   buffer = 0,
   callback = function()
     local filepath = vim.api.nvim_buf_get_name(0)
